@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffafd,
+            #ffe8f1,
+            #ffd3e3
+        );
+
+    position: relative;
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.final-container {
+
+    width: 90%;
+
+    max-width: 900px;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 5;
+
+    padding: 25px;
+}
+
+
+.small-text {
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        clamp(
+            1.3rem,
+            3vw,
+            1.8rem
+        );
+
+    color: #b05272;
+
+    margin-bottom: 25px;
+
+    opacity: 0;
+
+    animation:
+        fadeIn
+        2s
+        forwards;
+}
+
+
+.typing-message {
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            3.6rem
+        );
+
+    font-weight: 600;
+
+    line-height: 1.5;
+
+    color: #8b2f4f;
+
+    min-height: 180px;
+
+    max-width: 850px;
+
+    margin: auto;
+}
+
+
+.typing-message::after {
+
+    content: "|";
+
+    animation:
+        blink
+        .8s
+        infinite;
+}
+
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   BURST
+========================================= */
+
+.burst {
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    font-size:
+        clamp(
+            15px,
+            2.5vw,
+            28px
+        );
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    animation:
+        burstOut
+        1.3s
+        ease-out
+        forwards;
+}
+
+
+@keyframes burstOut {
+
+    from {
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(.2);
+
+        opacity: 0;
+    }
+
+    20% {
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translate(
+                calc(
+                    -50% + var(--bx)
+                ),
+                calc(
+                    -50% + var(--by)
+                )
+            )
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   HEART OUTLINE
+========================================= */
+
+.heart-particle {
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    z-index: 25;
+
+    pointer-events: none;
+
+    font-size:
+        clamp(
+            16px,
+            2.5vw,
+            29px
+        );
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    animation:
+        makeHeart
+        2.5s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        )
+        forwards;
+}
+
+
+@keyframes makeHeart {
+
+    from {
+
+        transform:
+            translate(
+                calc(
+                    -50% + var(--bx)
+                ),
+                calc(
+                    -50% + var(--by)
+                )
+            )
+            scale(.8);
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translate(
+                calc(
+                    -50% + var(--hx)
+                ),
+                calc(
+                    -50% + var(--hy)
+                )
+            )
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   GLOW
+========================================= */
+
+.heart-glow {
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    width: 260px;
+    height: 260px;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                255,
+                70,
+                130,
+                .3
+            ),
+            transparent 70%
+        );
+
+    filter:
+        blur(30px);
+
+    z-index: 18;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation:
+        glow
+        4s
+        forwards;
+}
+
+
+@keyframes glow {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(.2);
+    }
+
+    40% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: .7;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(3);
+    }
+}
+
+
+/* =========================================
+   FLASH
+========================================= */
+
+.flash {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 15;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            white,
+            rgba(
+                255,
+                180,
+                210,
+                .5
+            ),
+            transparent 70%
+        );
+
+    animation:
+        flash
+        1s
+        forwards;
+}
+
+
+@keyframes flash {
+
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+.floating {
+
+    position: fixed;
+
+    bottom: -30px;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    animation:
+        floatUp
+        6s
+        linear
+        forwards;
+}
+
+
+@keyframes floatUp {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+@media(max-width:600px) {
+
+    .typing-message {
+
+        font-size: 2rem;
+
+        min-height: 220px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="final-container">
+
+    <div class="small-text">
+        And finally...
+    </div>
+
+
+    <p
+        id="typingMessage"
+        class="typing-message">
+    </p>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================
+   ✏️ YOUR FINAL MESSAGE
+========================================= */
+
+const message =
+"You are the most beautiful part of my life, and I hope this little surprise makes you smile. ❤️";
+
+
+const typingSpeed = 80;
+
+
+
+/* =========================================
+   TYPING
+========================================= */
+
+function startTyping() {
+
+    const text =
+        document.getElementById(
+            "typingMessage"
+        );
+
+    let i = 0;
+
+
+    function type() {
+
+        if (i < message.length) {
+
+            text.textContent +=
+                message[i];
+
+            i++;
+
+            setTimeout(
+                type,
+                typingSpeed
+            );
+
+        } else {
+
+            setTimeout(
+                createBurst,
+                700
+            );
+
+        }
+
+    }
+
+
+    type();
+
+}
+
+
+
+/* =========================================
+   BURST
+========================================= */
+
+function createBurst() {
+
+
+    /* FLASH */
+
+    const flash =
+        document.createElement(
+            "div"
+        );
+
+    flash.className = "flash";
+
+    document.body.appendChild(
+        flash
+    );
+
+
+    setTimeout(
+        () => flash.remove(),
+        1000
+    );
+
+
+    /* GLOW */
+
+    const glow =
+        document.createElement(
+            "div"
+        );
+
+    glow.className =
+        "heart-glow";
+
+    document.body.appendChild(
+        glow
+    );
+
+
+
+    /* PARTICLE SYMBOLS */
+
+    const symbols = [
+
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "🌸",
+        "🌷",
+        "🌹",
+        "🌺",
+        "✨"
+
+    ];
+
+
+    /*
+     * More particles =
+     * smoother heart outline.
+     */
+
+    const count = 120;
+
+
+    const particles = [];
+
+
+
+    /* =====================================
+       CREATE BURST PARTICLES
+    ===================================== */
+
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
+
+
+        const p =
+            document.createElement(
+                "div"
+            );
+
+
+        p.className =
+            "burst";
+
+
+        p.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+
+        const distance =
+            150 +
+            Math.random() *
+            400;
+
+
+        p.style.setProperty(
+            "--bx",
+            Math.cos(angle) *
+            distance +
+            "px"
+        );
+
+
+        p.style.setProperty(
+            "--by",
+            Math.sin(angle) *
+            distance +
+            "px"
+        );
+
+
+        document.body.appendChild(
+            p
+        );
+
+
+        particles.push(p);
+
+    }
+
+
+
+    /* =====================================
+       WAIT FOR BURST
+    ===================================== */
+
+    setTimeout(
+        function () {
+
+
+            /*
+             * REAL HEART OUTLINE
+             *
+             * This is the classic
+             * parametric heart:
+             *
+             * x = 16 sin³(t)
+             *
+             * y =
+             * 13cos(t)
+             * -5cos(2t)
+             * -2cos(3t)
+             * -cos(4t)
+             *
+             * Particles are placed
+             * directly on this curve.
+             */
+
+
+            const screen =
+                Math.min(
+                    window.innerWidth,
+                    window.innerHeight
+                );
+
+
+            const width =
+                screen * .030;
+
+
+
+            particles.forEach(
+                function (
+                    p,
+                    index
+                ) {
+
+
+                    /*
+                     * Evenly distribute
+                     * around the outline.
+                     */
+
+                    const t =
+                        (
+                            index /
+                            count
+                        ) *
+                        Math.PI *
+                        2;
+
+
+
+                    const x =
+                        16 *
+                        Math.pow(
+                            Math.sin(t),
+                            3
+                        );
+
+
+
+                    const y =
+                        -(
+                            13 *
+                            Math.cos(t)
+                            -
+                            5 *
+                            Math.cos(
+                                2 * t
+                            )
+                            -
+                            2 *
+                            Math.cos(
+                                3 * t
+                            )
+                            -
+                            Math.cos(
+                                4 * t
+                            )
+                        );
+
+
+
+                    /*
+                     * Scale.
+                     */
+
+                    p.style.setProperty(
+                        "--hx",
+                        x *
+                        width +
+                        "px"
+                    );
+
+
+                    p.style.setProperty(
+                        "--hy",
+                        y *
+                        width +
+                        "px"
+                    );
+
+
+
+                    p.className =
+                        "heart-particle";
+
+
+                }
+            );
+
+
+        },
+        1300
+    );
+
+
+
+    /* =====================================
+       CLEAN UP
+    ===================================== */
+
+    setTimeout(
+        function () {
+
+
+            particles.forEach(
+                p => p.remove()
+            );
+
+
+            glow.remove();
+
+
+        },
+        7500
+    );
+
+}
+
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+function floatingHeart() {
+
+
+    const h =
+        document.createElement(
+            "div"
+        );
+
+
+    h.className =
+        "floating";
+
+
+    const symbols = [
+
+        "❤️",
+        "💕",
+        "💗",
+        "🌸",
+        "🌷"
+
+    ];
+
+
+    h.textContent =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
+
+
+    h.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    h.style.fontSize =
+        (
+            15 +
+            Math.random() *
+            20
+        ) +
+        "px";
+
+
+    document.body.appendChild(
+        h
+    );
+
+
+    setTimeout(
+        () => h.remove(),
+        7000
+    );
+
+}
+
+
+
+startTyping();
+
+
+setInterval(
+    floatingHeart,
+    900
+);
+
+
+</script>
+
+
+</body>
+
+</html>
